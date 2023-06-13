@@ -1,12 +1,14 @@
 const http = require('node:http');
+const generateResponse = require("./response");
+const contentType = require("./contentType")
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Welcom to your Module NodeJS Server');
+  res.setHeader('Content-Type', contentType());
+  res.end(generateResponse());
 });
 
 server.listen(port, hostname, () => {
