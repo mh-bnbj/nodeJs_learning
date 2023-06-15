@@ -1,0 +1,17 @@
+{
+  "name": "e1_sample-nodejs-merger",
+  "version": "1.0.0",
+  "description": "This repo will merge two catalogs to one output CSV file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "catalogs",
+    "merger",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "MohamadHasan Binabaji",
+  "license": "ISC"
+}
