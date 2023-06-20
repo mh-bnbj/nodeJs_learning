@@ -13,6 +13,11 @@ const readCSV = (filePath) => {
     })
 }
 
+const readDirectory = (folderPath) => {
+    return fs.readdirSync(folderPath)
+}
+
 module.exports = {
     readCSV,
+    readDirectory,
 }
