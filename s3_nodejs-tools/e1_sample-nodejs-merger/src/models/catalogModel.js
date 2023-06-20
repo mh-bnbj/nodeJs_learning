@@ -5,8 +5,21 @@ class CatalogModel {
         this.products = []
     }
 
+    async checkExistence(productData) {
+        await asyncForEach(this.products, async (product) => {
+            await asyncForEach(product.Barcodes, (barcode) => {
+                if (productData.Barcodes.includes(barcode)) {
+                    return true
+                }
+            })
+        })
+        return false
+    }
+
     async addProduct(productData) {
-        console.log('productData', productData)
+        if (!(await this.checkExistence(productData))) {
+            this.products.push(productData)
+        }
     }
 
     async addProducts(catalogData) {
@@ -34,8 +47,10 @@ class CatalogModel {
                 }
             ).Name
 
-            this.addProduct(productData)
+            await this.addProduct(productData)
         })
+
+        return this.products
     }
 }
 
