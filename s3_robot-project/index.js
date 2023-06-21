@@ -1,8 +1,10 @@
 const RobotModel = require('./src/models/robotModel')
 const { parseCommand } = require('./src/utils/commandHandler')
 const { readCommandFile } = require('./src/utils/fileHandler')
+const { handleServeFile } = require('./src/utils/serverHandler')
 const http = require('http')
 const url = require('url')
+const fs = require('fs')
 
 const runRobot_byfile = () => {
     const robotModel = new RobotModel(0, 0, 'NORTH')
@@ -27,9 +29,9 @@ const runRobot_byServer = () => {
 
         if (urlParsed.pathname === '/mainPage') {
             res.setHeader('Content-Type', 'text/html')
-
-            res.end(readHtml('./about.html'))
-        } else {
+            res.write(fs.readFileSync('./src/html/mainPage.html'))
+            res.end()
+        } else if (urlParsed.pathname === '/command') {
             res.writeHead(200, {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
@@ -56,6 +58,8 @@ const runRobot_byServer = () => {
                     })
                 )
             })
+        } else {
+            handleServeFile(req, res)
         }
     })
 

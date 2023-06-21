@@ -13,7 +13,7 @@ $(document).ready(() => {
 
 function getReport() {
     $.ajax({
-        url: 'http://127.0.0.1:3000',
+        url: 'http://127.0.0.1:3000/command',
         method: 'POST',
         data: JSON.stringify({ command: 'REPORT' }),
 
@@ -35,7 +35,7 @@ function getReport() {
 
 function sendCommand() {
     $.ajax({
-        url: 'http://127.0.0.1:3000',
+        url: 'http://127.0.0.1:3000/command',
         method: 'POST',
         data: JSON.stringify({
             command: `${$('.command .cmInput input').val()}`,
