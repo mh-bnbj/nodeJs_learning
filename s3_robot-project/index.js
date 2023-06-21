@@ -3,8 +3,6 @@ const { parseCommand } = require('./src/utils/commandHandler')
 const { readCommandFile } = require('./src/utils/fileHandler')
 const http = require('http')
 const url = require('url')
-const qs = require('querystring')
-const { copyFileSync } = require('fs')
 
 const runRobot_byfile = () => {
     const robotModel = new RobotModel(0, 0, 'NORTH')
