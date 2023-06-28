@@ -5,13 +5,14 @@ const port = 3000
 app.use(express.json())
 
 app.use((req,res,next)=>{
-    req.massage = 'parameter send to other middlewares'
-    next()
+    console.log('hello')
+    // we can end a middleWare by useing next() function or sending a response on res
+    // when a middleWare ended , express go to next middleWare to run
 })
 
 
 app.use((req,res,next)=>{
-    console.log('middleware2 massage:' , req.massage)
+    console.log('world')
     next()
 })
 
