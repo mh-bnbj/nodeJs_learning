@@ -2,24 +2,20 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.use(express.json())
 
-app.use((req,res,next)=>{
-    console.log('hello')
-    // we can end a middleWare by useing next() function or sending a response on res
-    // when a middleWare ended , express go to next middleWare to run
-})
-
-
-app.use((req,res,next)=>{
-    console.log('world')
+const MW_setUsername = (req , res , next)=>{
+    req.username = 'mohamad'
     next()
-})
+}
 
+const MW_setPassword = (req,res,next)=>{
+    req.password = '1234'
+    next()
+}
 
 // READ
-app.get('/', (req, res) => {
-  res.send('Hello world !!!!')
+app.get('/' , MW_setUsername , MW_setPassword , express.json() ,  (req, res) => {
+  res.send(req.username + " : " + req.password)
 })
 
 
