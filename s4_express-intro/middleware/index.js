@@ -5,17 +5,13 @@ const port = 3000
 app.use(express.json())
 
 app.use((req,res,next)=>{
-    console.log('one');
-    next()
-},
-(req,res,next)=>{
-    console.log('two');
+    req.massage = 'parameter send to other middlewares'
     next()
 })
 
 
 app.use((req,res,next)=>{
-    console.log('three');
+    console.log('middleware2 massage:' , req.massage)
     next()
 })
 
