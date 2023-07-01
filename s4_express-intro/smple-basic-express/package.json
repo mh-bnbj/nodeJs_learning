@@ -1,0 +1,18 @@
+{
+  "name": "smple-basic-express",
+  "version": "1.0.0",
+  "description": "This is a sample for express basic functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "mohamadhasan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemo": "^1.0.0"
+  }
+}
