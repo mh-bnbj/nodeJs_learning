@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Robot Movement app</title>
+        <link
+            rel="stylesheet"
+            href="../../node_modules/font-awesome/css/font-awesome.min.css"
+        />
+
+        <link
+            rel="stylesheet"
+            href="../../node_modules/bootstrap/dist/css/bootstrap.css"
+        />
+
+        <link rel="stylesheet" href="mainPage.css" />
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../../node_modules/jquery/dist/jquery.js"></script>
+        <script src="mainPage.js"></script>
+    </head>
+    <body>
+        <div class="content">
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <div class="command">
+                <div class="cmInput">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="enter new command"
+                    />
+                    <button class="btn btn-primary" onclick="sendCommand()">
+                        send command
+                    </button>
+                </div>
+                <div class="cmHistory">
+                    <!-- <div class="hisItem">
+                        <div class="itemNum">1</div>
+                        <div class="itemDiscript">out of board</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
