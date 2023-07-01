@@ -1,6 +1,10 @@
-const homepageController = (req , res)=>{
-    throw new Error('BROKEN')
-    res.send('HOME PAGE From Controller')
+const homepageController = (req, res) => {
+    res.send(`
+        <div>
+            <h1>Mohamadhasan Binabaji</h1>
+            <img src="/assets/img/me.jpg" />
+        </div>
+    `)
 }
 
 module.exports = homepageController
