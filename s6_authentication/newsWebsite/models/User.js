@@ -29,4 +29,8 @@ const User = db.define(
     }
 )
 
+User.validPassword = (user, password) => {
+    return user.password === password
+}
+
 module.exports = User

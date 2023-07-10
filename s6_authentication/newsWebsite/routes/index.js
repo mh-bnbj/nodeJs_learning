@@ -21,4 +21,5 @@ router.post('/login', loginController.post)
 
 router.get('/signup', signupController.get)
 router.post('/signup', signupController.post)
+
 module.exports = router
