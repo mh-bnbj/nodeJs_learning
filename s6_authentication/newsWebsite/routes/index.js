@@ -6,6 +6,8 @@ const aboutController = require('../controllers/aboutController')
 const contactController = require('../controllers/contactController')
 const categoryController = require('../controllers/categoryController')
 const searchController = require('../controllers/searchController')
+const signupController = require('../controllers/signupController')
+const loginController = require('../controllers/loginController')
 
 router.get('/', homepageController)
 router.get('/post/:id', postController)
@@ -14,4 +16,7 @@ router.get('/about', aboutController)
 router.get('/contact', contactController)
 router.get('/search', searchController)
 
+router.get('/login', loginController)
+router.get('/signup', signupController)
+router.post('/signup', signupController)
 module.exports = router
