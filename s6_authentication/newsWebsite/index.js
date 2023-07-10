@@ -9,7 +9,10 @@ const PORT = 3000
 app.set('view engine', 'ejs')
 app.use(morgan('dev'))
 app.use(express.static('public'))
+
 app.use(express.json())
+// for parse request body that forms
+app.use(express.urlencoded())
 
 app.use('/', router)
 
@@ -17,5 +20,5 @@ app.use(errorHandler.handler404)
 app.use(errorHandler.handlerServerErrors)
 
 app.listen(PORT, () => {
-  console.log(`App is running on ${PORT}`)
+    console.log(`App is running on ${PORT}`)
 })

@@ -1,5 +1,8 @@
-const loginController = (req, res) => {
+const get = (req, res) => {
+    res.render('login')
+}
+const post = (req, res) => {
     res.render('login')
 }
 
-module.exports = loginController
+module.exports = { get, post }
