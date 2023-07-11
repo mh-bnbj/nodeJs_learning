@@ -6,6 +6,10 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/User')
 
+const flash = require('connect-flash')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+
 const app = express()
 const PORT = 3000
 
@@ -16,6 +20,10 @@ app.use(express.static('public'))
 app.use(express.json())
 // for parse request body that forms
 app.use(express.urlencoded())
+
+app.use(cookieParser())
+app.use(session({ secret: 'keyboard cat asd' }))
+app.use(flash())
 
 passport.initialize()
 passport.use(

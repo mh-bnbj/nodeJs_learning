@@ -13,7 +13,14 @@
                     >
                     <br />
                     <br />
-                    <br />
+                    <% for (const key in flash) { %>
+                    <div
+                        class="alert alert-<%= key === 'error'?'danger':key %>"
+                        role="alert"
+                    >
+                        <%= flash[key] %>
+                    </div>
+                    <% } %>
                     <label for="inputName" class="sr-only">Name</label>
                     <input
                         name="name"
