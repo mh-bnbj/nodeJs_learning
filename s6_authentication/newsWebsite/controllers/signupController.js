@@ -10,11 +10,11 @@ const post = async (req, res) => {
     await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: await User.encryptPassword(req.body.password),
         age: 0,
     })
-
-    res.render('signup')
+    req.flash('success', 'user created successfully')
+    res.redirect('/login')
 }
 
 module.exports = { get, post }
