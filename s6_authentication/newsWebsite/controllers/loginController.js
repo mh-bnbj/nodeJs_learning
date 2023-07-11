@@ -9,7 +9,7 @@ const post = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login?failed',
     failureFlash: true,
-    session: false,
+    session: true,
 })
 
 module.exports = { get, post }

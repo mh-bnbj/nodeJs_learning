@@ -2,6 +2,7 @@ const Category = require('../models/Category')
 const Post = require('../models/Post')
 
 const homepageController = async (req, res) => {
+    console.log('req.user', req.user)
     const categories = await Category.findAll()
     const activePageId = Number(req.query.page) || 1
     const offset = (Number(req.query.page) - 1) * 11 || 0

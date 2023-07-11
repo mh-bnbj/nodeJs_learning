@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const flash = require('connect-flash')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const passport = require('passport')
 
 const app = express()
 const PORT = 3000
@@ -22,7 +23,9 @@ app.use(express.json())
 app.use(express.urlencoded())
 
 app.use(cookieParser())
-app.use(session({ secret: 'keyboard cat asd' }))
+app.use(session({ secret: 'keyboard cat' }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())
 
 app.use('/', router)

@@ -27,3 +27,20 @@ passport.use(
         }
     )
 )
+
+passport.serializeUser((user, cb) => {
+    cb(null, user.id)
+})
+
+passport.deserializeUser(async (id, cb) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                id: id,
+            },
+        })
+        cb(null, user)
+    } catch {
+        cb(err, null)
+    }
+})
