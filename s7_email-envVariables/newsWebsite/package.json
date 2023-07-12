@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-authentication",
+  "name": "nodejs-email",
   "version": "1.0.0",
-  "description": "this project is NEWSWebsit for learning nodejs authentication",
+  "description": "this project is NEWSWebsit for learning nodejs email authentication",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",

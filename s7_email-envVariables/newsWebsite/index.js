@@ -1,3 +1,7 @@
+require('dotenv').config({
+    path: 'variables.env',
+})
+
 const express = require('express')
 const router = require('./routes')
 const errorHandler = require('./helpers/errorHandler')
@@ -9,7 +13,7 @@ const session = require('express-session')
 const passport = require('passport')
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 // add passport codes
 require('./helpers/passport')
@@ -23,7 +27,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 
 app.use(cookieParser())
-app.use(session({ secret: 'keyboard cat' }))
+app.use(session({ secret: process.env.SESSION_SECRET_KEY }))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
