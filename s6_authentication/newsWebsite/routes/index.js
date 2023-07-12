@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+
+const { check } = require('express-validator')
+
 const homepageController = require('../controllers/homepageController')
 const postController = require('../controllers/postController')
 const aboutController = require('../controllers/aboutController')
@@ -20,6 +23,11 @@ router.get('/login', loginController.get)
 router.post('/login', loginController.post)
 
 router.get('/signup', signupController.get)
-router.post('/signup', signupController.post)
+router.post(
+    '/signup',
+    check('email').notEmpty(),
+    check('password').isLength({ min: 6 }),
+    signupController.post
+)
 
 module.exports = router

@@ -89,6 +89,12 @@
                         </label>
                     </div>
 
+                    <% errors.forEach(error => { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error.path %> - <%= error.msg %>
+                    </div>
+                    <% }) %>
+
                     <button
                         class="btn btn-lg btn-primary btn-block"
                         type="submit"
