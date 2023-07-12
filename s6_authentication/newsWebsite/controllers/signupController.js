@@ -17,6 +17,21 @@ const post = async (req, res) => {
         return
     }
 
+    const existanceUser = await User.findOne({
+        where: {
+            email: req.body.email,
+        },
+    })
+
+    if (existanceUser) {
+        req.flash('warning', 'This user already exists')
+        res.render('signup', {
+            flash: req.flash(),
+            errors: [],
+        })
+        return
+    }
+
     await User.create({
         name: req.body.name,
         email: req.body.email,

@@ -20,12 +20,18 @@ router.get('/contact', contactController)
 router.get('/search', searchController)
 
 router.get('/login', loginController.get)
-router.post('/login', loginController.post)
+router.post(
+    '/login',
+    check('name').not().isEmpty().trim(),
+    check('email').isEmail().toLowerCase(),
+    loginController.post
+)
 
 router.get('/signup', signupController.get)
 router.post(
     '/signup',
-    check('email').notEmpty(),
+    check('name').not().isEmpty().trim(),
+    check('email').isEmail().toLowerCase(),
     check('password').isLength({ min: 6 }),
     signupController.post
 )
