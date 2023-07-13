@@ -35,7 +35,7 @@ User.validPassword = (user, password) => {
 }
 
 User.encryptPassword = async (password) => {
-    const saltRounds = process.env.SALT_ROUNDS
+    const saltRounds = parseInt(process.env.SALT_ROUNDS)
     const salt = bcrypt.genSaltSync(saltRounds)
     const hash = bcrypt.hashSync(password, salt)
 
