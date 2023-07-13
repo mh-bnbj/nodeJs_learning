@@ -17,6 +17,24 @@ const { isLoggedIn, isNotLoggedIn } = require('../helpers/auth')
 const mailController = require('../controllers/mailController')
 const resetController = require('../controllers/resetController')
 const dashboardController = require('../controllers/dashboardController')
+const AdminPostController = require('../controllers/AdminPostController')
+const path = require('path')
+const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../public/uploads/'))
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
+        cb(
+            null,
+            `${file.fieldname}-${uniqueSuffix}.${file.originalname
+                .split('.')
+                .slice(-1)}`
+        )
+    },
+})
+const upload = multer({ storage: storage })
 
 router.get('/', homepageController)
 router.get('/post/:id', postController)
@@ -49,7 +67,7 @@ router.get('/forget', isNotLoggedIn, forgetController.get)
 router.post(
     '/forget',
     isNotLoggedIn,
-    body('email').isEmail().normalizeEmail().toLowerCase(),
+    check('email').isEmail().normalizeEmail().toLowerCase(),
     forgetController.post
 )
 
@@ -60,8 +78,11 @@ router.get('/reset', resetController.get)
 router.post(
     '/reset',
     isNotLoggedIn,
-    body('password').isLength({ min: 6 }),
+    check('password').isLength({ min: 6 }),
     resetController.post
 )
+
+router.get('/admin/create', AdminPostController.get)
+router.post('/admin/create', upload.single('image'), AdminPostController.post)
 
 module.exports = router

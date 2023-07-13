@@ -18,7 +18,7 @@ const dashboardController = async (req, res) => {
             return {
                 id: post.id,
                 title: post.title,
-                created_at: format(new Date(post.created_at), 'yyyy/mm/dd'),
+                created_at: format(new Date(post.created_at), 'yyyy/m/dd'),
             }
         }),
         activeCategoryId: null,
