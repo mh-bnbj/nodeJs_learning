@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const { validationResult } = require('express-validator')
 const sendMail = require('../utils/sendMail')
+
 const get = (req, res) => {
     res.render('signup', {
         flash: req.flash(),
@@ -39,11 +40,19 @@ const post = async (req, res) => {
         age: 0,
     })
 
+    const html = await ejs.renderFile(
+        path.join(__dirname, '../views/mail/auth.ejs'),
+        {
+            title: 'Welcome to My Blog',
+            description: 'You have successfully registered in Ehsan Gazar Blog',
+            link: null,
+        }
+    )
+
     await sendMail({
         to: req.body.email,
         subject: 'Welcome to My website',
-        text: 'You have registered successfuly in My Website',
-        html: '<span>You have registered successfuly in My Website</span>',
+        html: html,
     })
 
     req.flash('success', 'user created successfully')

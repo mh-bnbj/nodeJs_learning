@@ -10,9 +10,12 @@ const contactController = require('../controllers/contactController')
 const categoryController = require('../controllers/categoryController')
 const searchController = require('../controllers/searchController')
 const signupController = require('../controllers/signupController')
+const forgetController = require('../controllers/forgetController')
 const loginController = require('../controllers/loginController')
 const logoutController = require('../controllers/logoutController')
 const { isLoggedIn, isNotLoggedIn } = require('../helpers/auth')
+const mailController = require('../controllers/mailController')
+const resetController = require('../controllers/resetController')
 const dashboardController = require('../controllers/dashboardController')
 
 router.get('/', homepageController)
@@ -42,6 +45,23 @@ router.post(
     signupController.post
 )
 
+router.get('/forget', isNotLoggedIn, forgetController.get)
+router.post(
+    '/forget',
+    isNotLoggedIn,
+    body('email').isEmail().normalizeEmail().toLowerCase(),
+    forgetController.post
+)
+
 router.get('/logout', logoutController)
+
+router.get('/mail', mailController)
+router.get('/reset', resetController.get)
+router.post(
+    '/reset',
+    isNotLoggedIn,
+    body('password').isLength({ min: 6 }),
+    resetController.post
+)
 
 module.exports = router
