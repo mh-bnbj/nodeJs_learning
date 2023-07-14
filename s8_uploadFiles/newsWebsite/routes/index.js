@@ -18,23 +18,9 @@ const mailController = require('../controllers/mailController')
 const resetController = require('../controllers/resetController')
 const dashboardController = require('../controllers/dashboardController')
 const AdminPostController = require('../controllers/AdminPostController')
-const path = require('path')
-const multer = require('multer')
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../public/uploads/'))
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
-        cb(
-            null,
-            `${file.fieldname}-${uniqueSuffix}.${file.originalname
-                .split('.')
-                .slice(-1)}`
-        )
-    },
-})
-const upload = multer({ storage: storage })
+const upload = require('../helpers/multer')
+const sharp = require('sharp')
+const fs = require('fs')
 
 router.get('/', homepageController)
 router.get('/post/:id', postController)
@@ -83,6 +69,17 @@ router.post(
 )
 
 router.get('/admin/create', AdminPostController.get)
-router.post('/admin/create', upload.single('image'), AdminPostController.post)
+router.post(
+    '/admin/create',
+    upload.single('image'),
+    async (req, res, next) => {
+        await sharp(req.file.path)
+            .resize(400)
+            .toFile(`public/uploads/${req.file.filename}`)
+        await fs.unlinkSync(req.file.path)
+        next()
+    },
+    AdminPostController.post
+)
 
 module.exports = router
